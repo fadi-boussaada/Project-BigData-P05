@@ -1,0 +1,17 @@
+{
+  "created_utc": "2026-11-06T08:36:37+00:00",
+  "input": "C:\\P05-Amazon-Reviews\\data\\source\\Appliances.jsonl.gz",
+  "output": "data\\samples\\val_10pct.jsonl.gz",
+  "rule": "blake2b(salt|parent_asin) mod 10000 < 1000",
+  "salt": "p05-v1",
+  "rate_products": 0.1,
+  "lines_read": 2128605,
+  "lines_skipped_invalid_or_no_parent_asin": 0,
+  "reviews_kept": 207351,
+  "reviews_retention": 0.09741,
+  "products_total_seen": 94319,
+  "products_kept": 9431,
+  "products_retention": 0.09999,
+  "output_sha256": "4c136ed8318af8be5695b11c13c32f9ed9aad495088d0b5cd58ac004135ca43c",
+  "note": "Deduplication non appliquee ici (cf. S2, cle technique d'avis)."
+}

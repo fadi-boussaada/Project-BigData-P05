@@ -1,0 +1,69 @@
+{
+    "dataset": {
+        "name": "Amazon Reviews 2023 - Appliances",
+        "file_size_bytes": 929451412,
+        "file_size_gb": 0.866
+    },
+    "records": {
+        "total_lines": 2128605,
+        "empty_lines": 0,
+        "invalid_json": 0,
+        "non_object_json": 0,
+        "valid_json_objects": 2128605,
+        "exact_duplicate_lines": 22656
+    },
+    "products": {
+        "unique_parent_asin": 94319,
+        "unique_asin": 104237,
+        "products_with_at_least_one_nonempty_text": 94282,
+        "products_with_valid_parent_asin": 94319
+    },
+    "identifiers": {
+        "empty_or_missing_asin": 0,
+        "empty_or_missing_parent_asin": 0,
+        "empty_or_missing_user_id": 0
+    },
+    "ratings": {
+        "valid_count": 2128605,
+        "invalid_count": 0,
+        "distribution": {
+            "1.0": 250453,
+            "2.0": 79664,
+            "3.0": 104047,
+            "4.0": 208216,
+            "5.0": 1486225
+        }
+    },
+    "timestamps_milliseconds": {
+        "missing_or_null": 0,
+        "invalid_or_unconvertible": 0,
+        "earliest_utc": "2000-10-23T14:37:23+00:00",
+        "latest_utc": "2023-09-12T16:29:17.016000+00:00"
+    },
+    "review_text": {
+        "nonempty_text_count": 2126540,
+        "empty_or_invalid_text_count": 2065
+    },
+    "titles": {
+        "empty_or_missing_title": 0
+    },
+    "verified_purchase": {
+        "true": 2040064,
+        "false": 88541,
+        "null_missing_or_unexpected": 0
+    },
+    "helpful_votes": {
+        "zero_vote_reviews": 1719985,
+        "positive_vote_reviews": 408620,
+        "missing_null_or_invalid": 0,
+        "average_valid_votes": 0.929,
+        "maximum": 5704
+    },
+    "notes": [
+        "The complete extracted JSONL dataset was read in one streaming pass.",
+        "Timestamp values were interpreted as Unix milliseconds and converted to UTC.",
+        "No records were modified or removed.",
+        "Exact duplicates mean identical raw JSONL lines; semantically equivalent records with different formatting are not detected.",
+        "A nonempty review text is counted as usable here; project-specific cleaning and tokenization happen later."
+    ]
+}

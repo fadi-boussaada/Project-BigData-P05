@@ -1,0 +1,14 @@
+metric,value
+valid_title_count,2128605
+missing_field,0
+null,0
+empty_or_whitespace,0
+invalid_type,0
+average_characters,22.340443623875732
+median_characters,17.0
+minimum_characters,1
+maximum_characters,348
+average_words,4.064081875218746
+median_words,3.0
+minimum_words,1
+maximum_words,68

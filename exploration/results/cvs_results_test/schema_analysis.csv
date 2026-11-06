@@ -1,0 +1,11 @@
+field,observed_types_and_counts,present_count,missing_field_count,null_count,missing_or_null_percentage
+asin,string: 2128605,2128605,0,0,0.0
+helpful_vote,integer: 2128605,2128605,0,0,0.0
+images,array: 2128605,2128605,0,0,0.0
+parent_asin,string: 2128605,2128605,0,0,0.0
+rating,float: 2128605,2128605,0,0,0.0
+text,string: 2128605,2128605,0,0,0.0
+timestamp,integer: 2128605,2128605,0,0,0.0
+title,string: 2128605,2128605,0,0,0.0
+user_id,string: 2128605,2128605,0,0,0.0
+verified_purchase,boolean: 2128605,2128605,0,0,0.0

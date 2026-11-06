@@ -1,0 +1,75 @@
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'Arial','fontSize':'15px','primaryColor':'#ffffff','lineColor':'#555'}}}%%
+flowchart TD
+    SRC["<b>Appliances.jsonl.gz</b><br/>Amazon Reviews'23 (source)"]
+
+    subgraph BRONZE[" "]
+        B1["<b>BRONZE · HDFS</b><br/>/p05/bronze/<br/>archive immuable + manifeste"]
+    end
+
+    PREP["Préparateur streaming<br/>validation · normalisation · journal de rejets"]
+
+    subgraph SILVER[" "]
+        S1["<b>SILVER · HDFS</b><br/>/p05/silver/tokens/<br/>review_key, parent_asin, tokens"]
+        S2["<b>SILVER · HDFS</b><br/>/p05/silver/ratings/<br/>review_key, parent_asin, month, rating"]
+    end
+
+    subgraph MR[" "]
+        MR1["<b>MR1</b> · Java MapReduce<br/>fréquences (produit, terme)"]
+        MR2["<b>MR2</b> · Java MapReduce<br/>TF-IDF par produit"]
+        MR3["<b>MR3</b> · Java MapReduce<br/>tendances mensuelles"]
+    end
+
+    subgraph GOLD[" "]
+        G1["<b>GOLD · HDFS</b><br/>/p05/gold/mr1_product_tf/"]
+        G2["<b>GOLD · HDFS</b><br/>/p05/gold/mr2_product_tfidf/"]
+        G3["<b>GOLD · HDFS</b><br/>/p05/gold/mr3_product_month/"]
+    end
+
+    SQL["Moteur SQL compatible Iceberg (Spark SQL)<br/>import + interrogation"]
+
+    subgraph ICE[" "]
+        T1["<b>Iceberg</b><br/>silver_reviews"]
+        T2["<b>Iceberg</b><br/>gold.product_terms"]
+        T3["<b>Iceberg</b><br/>gold.product_month_metrics"]
+    end
+
+    VIZ["Restitution<br/>Streamlit / rendu statique"]
+
+    SRC --> B1 --> PREP
+    PREP --> S1
+    PREP --> S2
+    S1 --> MR1 --> MR2
+    S2 --> MR3
+    MR1 --> G1
+    MR2 --> G2
+    MR3 --> G3
+    G1 --> SQL
+    G2 --> SQL
+    G3 --> SQL
+    S1 -.-> SQL
+    S2 -.-> SQL
+    SQL --> T1
+    SQL --> T2
+    SQL --> T3
+    T1 --> VIZ
+    T2 --> VIZ
+    T3 --> VIZ
+
+    classDef bronze fill:#f4e1c8,stroke:#a06a2c,color:#3a2410
+    classDef silver fill:#e3e7ee,stroke:#6b7a90,color:#1d2633
+    classDef gold fill:#fbf0b8,stroke:#b89400,color:#3a3000
+    classDef job fill:#d9ecff,stroke:#2f6fb3,color:#0b2a4a
+    classDef ice fill:#d8f3ee,stroke:#1f8a7a,color:#0a3a33
+    classDef plain fill:#ffffff,stroke:#555,color:#222
+    class B1 bronze
+    class S1,S2 silver
+    class G1,G2,G3 gold
+    class MR1,MR2,MR3 job
+    class T1,T2,T3 ice
+    class SRC,PREP,SQL,VIZ plain
+
+    style BRONZE fill:none,stroke:none
+    style SILVER fill:none,stroke:none
+    style MR fill:none,stroke:none
+    style GOLD fill:none,stroke:none
+    style ICE fill:none,stroke:none

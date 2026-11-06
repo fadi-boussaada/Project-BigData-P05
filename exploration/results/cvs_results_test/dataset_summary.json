@@ -1,0 +1,222 @@
+{
+    "dataset": {
+        "name": "Amazon Reviews 2023 - Appliances",
+        "format": "JSON Lines",
+        "encoding": "UTF-8",
+        "file_size_bytes": 929451412,
+        "file_size_mb": 886.394,
+        "file_size_gb": 0.866
+    },
+    "records": {
+        "total_lines": 2128605,
+        "empty_lines": 0,
+        "invalid_json": 0,
+        "non_object_json": 0,
+        "valid_json_objects": 2128605
+    },
+    "products": {
+        "unique_parent_asin": 94319,
+        "unique_asin": 104237,
+        "top_20": [
+            [
+                "B0B3DB5HTC",
+                12027
+            ],
+            [
+                "B07RNJY499",
+                11620
+            ],
+            [
+                "B07WTXWC32",
+                8519
+            ],
+            [
+                "B08YBGCNHP",
+                7330
+            ],
+            [
+                "B000AST3AK",
+                7030
+            ],
+            [
+                "B01KJ2FVFW",
+                6140
+            ],
+            [
+                "B00UXG4WR8",
+                5896
+            ],
+            [
+                "B000DLB2FI",
+                5736
+            ],
+            [
+                "B081KSD3BK",
+                5668
+            ],
+            [
+                "B09YC8YCV6",
+                5401
+            ],
+            [
+                "B01BIDPHYQ",
+                5299
+            ],
+            [
+                "B0045LLC7K",
+                5243
+            ],
+            [
+                "B002JAKRAM",
+                5042
+            ],
+            [
+                "B092LLM7H3",
+                5040
+            ],
+            [
+                "B07CP1KY9M",
+                5010
+            ],
+            [
+                "B09SHVMDY8",
+                4938
+            ],
+            [
+                "B0BVFQY9HH",
+                4874
+            ],
+            [
+                "B09VTZ54J7",
+                4847
+            ],
+            [
+                "B0C5PR3NWJ",
+                4742
+            ],
+            [
+                "B07P3Y8JWY",
+                4533
+            ]
+        ]
+    },
+    "ratings": {
+        "valid_count": 2128605,
+        "invalid_count": 0,
+        "distribution": {
+            "1.0": 250453,
+            "2.0": 79664,
+            "3.0": 104047,
+            "4.0": 208216,
+            "5.0": 1486225
+        },
+        "average": 4.221502345432807,
+        "median": 5.0
+    },
+    "dates": {
+        "missing_timestamp": 0,
+        "invalid_timestamp": 0,
+        "earliest": "2000-10-23T14:37:23+00:00",
+        "latest": "2023-09-12T16:29:17.016000+00:00",
+        "yearly_counts": {
+            "2000": 1,
+            "2002": 1,
+            "2003": 8,
+            "2004": 16,
+            "2005": 80,
+            "2006": 182,
+            "2007": 621,
+            "2008": 883,
+            "2009": 1539,
+            "2010": 3537,
+            "2011": 7636,
+            "2012": 15219,
+            "2013": 43618,
+            "2014": 77353,
+            "2015": 122696,
+            "2016": 153916,
+            "2017": 169785,
+            "2018": 189599,
+            "2019": 261004,
+            "2020": 311251,
+            "2021": 345120,
+            "2022": 299487,
+            "2023": 125053
+        }
+    },
+    "text": {
+        "empty_text": 2065,
+        "valid_text_count": 2126540,
+        "short_reviews_at_most_5_words": 440241,
+        "average_characters": 169.67713374777807,
+        "median_characters": 88.0,
+        "minimum_characters": 1,
+        "maximum_characters": 30004,
+        "average_words": 31.526170210764903,
+        "median_words": 16.0,
+        "minimum_words": 1,
+        "maximum_words": 3636
+    },
+    "verified_purchase": {
+        "true": 2040064,
+        "false": 88541,
+        "missing_field": 0,
+        "null": 0,
+        "unexpected": 0
+    },
+    "helpful_vote": {
+        "valid_count": 2128605,
+        "missing_field": 0,
+        "null": 0,
+        "negative_values": 0,
+        "invalid_type": 0,
+        "zero_votes": 1719985,
+        "minimum": 0,
+        "maximum": 5704,
+        "average": 0.9288867591685634,
+        "median": 0.0
+    },
+    "title": {
+        "valid_count": 2128605,
+        "missing_field": 0,
+        "null": 0,
+        "empty": 0,
+        "invalid_type": 0,
+        "average_characters": 22.340443623875732,
+        "median_characters": 17.0,
+        "minimum_characters": 1,
+        "maximum_characters": 348,
+        "average_words": 4.064081875218746,
+        "median_words": 3.0,
+        "minimum_words": 1,
+        "maximum_words": 68,
+        "examples": [
+            "Work great",
+            "excellent product",
+            "Happy customer!",
+            "Amazing value",
+            "Dryer parts",
+            "DO NOT purchase this ice machine.",
+            "They don't fit properly",
+            "Five Stars",
+            "Five Stars",
+            "Company is phenomenal."
+        ]
+    },
+    "data_quality": {
+        "missing_parent_asin": 0,
+        "invalid_rating": 0,
+        "missing_timestamp": 0,
+        "invalid_timestamp": 0,
+        "empty_text": 2065,
+        "duplicate_check": "Not performed; reserved for the preparation stage."
+    },
+    "analysis_notes": [
+        "The original dataset was not modified.",
+        "Statistics were calculated using streaming JSONL reading.",
+        "Timestamp values were interpreted as Unix milliseconds.",
+        "Timestamp values outside 2000-01-01 to 2024-01-01 (UTC) were excluded from temporal statistics only.",
+        "No data cleaning or record rejection was performed.",
+        "Only syntactically valid JSON objects were included in field-level statistics."
+    ]
+}

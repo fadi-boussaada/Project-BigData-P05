@@ -1,0 +1,113 @@
+{
+  "file": "C:\\P05-Amazon-Reviews\\data\\source\\Appliances.jsonl.gz",
+  "lines_read": 2128605,
+  "partial_audit": false,
+  "valid_reviews_estimate": 2128604,
+  "rejects_by_reason": {
+    "text_vide_(titre_seul)_info": 0,
+    "timestamp_unite_inconnue": 1
+  },
+  "fields_present": {
+    "asin": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "str": 2128605
+      }
+    },
+    "helpful_vote": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "int": 2128605
+      }
+    },
+    "images": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "list": 2128605
+      }
+    },
+    "parent_asin": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "str": 2128605
+      }
+    },
+    "rating": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "float": 2128605
+      }
+    },
+    "text": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "str": 2128605
+      }
+    },
+    "timestamp": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "int": 2128605
+      }
+    },
+    "title": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "str": 2128605
+      }
+    },
+    "user_id": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "str": 2128605
+      }
+    },
+    "verified_purchase": {
+      "count": 2128605,
+      "pct": 100.0,
+      "types": {
+        "bool": 2128605
+      }
+    }
+  },
+  "ratings_distribution": {
+    "1.0": 250453,
+    "2.0": 79664,
+    "3.0": 104047,
+    "4.0": 208216,
+    "5.0": 1486225
+  },
+  "verified_purchase": {
+    "True": 2040064,
+    "False": 88540
+  },
+  "timestamp_unit_counts": {
+    "ms": 2128604,
+    "inconnu": 1
+  },
+  "distinct_parent_asin_valid": 94318,
+  "duplicates_by_candidate_key": 22657,
+  "helpful_vote_negative": 0,
+  "date_range_utc": {
+    "min": "2002-11-17T18:43:51+00:00",
+    "max": "2023-09-12T16:29:17.016000+00:00",
+    "min_raw": 1037558631000,
+    "max_raw": 1694536157016
+  },
+  "text_length_chars": {
+    "mean": 169.5,
+    "median": 88,
+    "p95": 580,
+    "max": 30004,
+    "empty_text_count": 2065
+  }
+}

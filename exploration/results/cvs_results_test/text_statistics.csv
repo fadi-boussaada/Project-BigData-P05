@@ -1,0 +1,14 @@
+metric,value
+text_count,2126540
+empty_text_count,2065
+short_reviews_at_most_5_words,440241
+total_characters,360825212
+total_words,67041662
+average_characters,169.67713374777807
+median_characters,88.0
+minimum_characters,1
+maximum_characters,30004
+average_words,31.526170210764903
+median_words,16.0
+minimum_words,1
+maximum_words,3636
