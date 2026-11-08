@@ -1,0 +1,13 @@
+{
+  "dataset": "Amazon Reviews'23 - categorie Appliances (McAuley Lab, UC San Diego)",
+  "file": "Appliances.jsonl.gz",
+  "source_url": "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw/review_categories/Appliances.jsonl.gz",
+  "portal": "https://amazon-reviews-2023.github.io/main.html",
+  "acquisition": "telechargement manuel par le groupe",
+  "manifest_created": "2026-11-08",
+  "local_path": "C:\\P05-Amazon-Reviews\\data\\source\\Appliances.jsonl.gz",
+  "size_bytes": 270209794,
+  "sha256": "150f209befceaa6f837abc997065b2d251034bbbda19bebc4ad56dac779730c2",
+  "integrity": "gzip_ok (fichier lu integralement sans erreur par l'audit de schema)",
+  "lines": 2128605
+}

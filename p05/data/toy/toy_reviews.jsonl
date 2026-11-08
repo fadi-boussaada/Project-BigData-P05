@@ -1,0 +1,15 @@
+{"rating": 5.0, "title": "Quiet and reliable", "text": "Very quiet dishwasher. Reliable so far, delivery was fast.", "asin": "TOY_A1", "parent_asin": "TOY_A", "user_id": "TOY_U1", "timestamp": 1672574400000, "helpful_vote": 2, "verified_purchase": true}
+{"rating": 4.0, "title": "Good", "text": "Quiet and clean. Not noisy at all.", "asin": "TOY_A1", "parent_asin": "TOY_A", "user_id": "TOY_U2", "timestamp": 1675252800000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 2.0, "title": "Leaks", "text": "It leaks after two months. Not reliable.", "asin": "TOY_A2", "parent_asin": "TOY_A", "user_id": "TOY_U3", "timestamp": 1677672000000, "helpful_vote": 5, "verified_purchase": false}
+{"rating": 3.0, "title": "Average", "text": "Average filter, ok for the price.", "asin": "TOY_A2", "parent_asin": "TOY_A", "user_id": "TOY_U4", "timestamp": 1677758400000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 1.0, "title": "Broke", "text": "Stopped working in a week. Terrible delivery too.", "asin": "TOY_B1", "parent_asin": "TOY_B", "user_id": "TOY_U5", "timestamp": 1672660800000, "helpful_vote": 1, "verified_purchase": true}
+{"rating": 1.0, "title": "Bad", "text": "Broke after a week, waste of money.", "asin": "TOY_B1", "parent_asin": "TOY_B", "user_id": "TOY_U6", "timestamp": 1672747200000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 5.0, "title": "Great filter", "text": "Great water filter, easy to install and the taste is clean.", "asin": "TOY_B2", "parent_asin": "TOY_B", "user_id": "TOY_U7", "timestamp": 1675339200000, "helpful_vote": 3, "verified_purchase": true}
+{"rating": 4.0, "title": "Nice", "text": "Nice size, fits well. Easy to clean.", "asin": "TOY_C1", "parent_asin": "TOY_C", "user_id": "TOY_U8", "timestamp": 1672574400000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 5.0, "title": "Perfect fit", "text": "Perfect fit, easy to install, works great!", "asin": "TOY_C1", "parent_asin": "TOY_C", "user_id": "TOY_U9", "timestamp": 1675252800000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 4.0, "title": "OK", "text": "Fits well, quiet. Delivery was slow.", "asin": "TOY_C1", "parent_asin": "TOY_C", "user_id": "TOY_U10", "timestamp": 1677672000000, "helpful_vote": 1, "verified_purchase": false}
+{"rating": 3.0, "title": "Meh", "text": "Does the job, nothing special.", "asin": "TOY_C1", "parent_asin": "TOY_C", "user_id": "TOY_U11", "timestamp": 1677758400000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 5.0, "title": "Love it", "text": "Love it, works great and very quiet.", "asin": "TOY_C1", "parent_asin": "TOY_C", "user_id": "TOY_U12", "timestamp": 1680350400000, "helpful_vote": 0, "verified_purchase": true}
+{"rating": 4.0, "title": "broken line test" "text": "this line is invalid JSON on purpose (T01)"
+{"rating": 4.0, "title": "No product id", "text": "missing parent_asin on purpose (T01)", "asin": "TOY_X1", "user_id": "TOY_U13", "timestamp": 1672574400000}
+{"rating": 7.0, "title": "Out of range", "text": "rating outside [1,5] on purpose (T01)", "asin": "TOY_A1", "parent_asin": "TOY_A", "user_id": "TOY_U14", "timestamp": 1672574400000}
