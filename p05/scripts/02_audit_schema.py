@@ -19,9 +19,10 @@ def h8(s: str) -> bytes:
     return hashlib.blake2b(s.encode("utf-8", "replace"), digest_size=8).digest()
 
 def infer_unit(ts):
-    """Heuristique sur la magnitude. >1e12 : ms ; 1e9..1e11 : s ; sinon inconnu."""
-    if ts >= 1e12: return "ms"
-    if 1e9 <= ts < 1e11: return "s"
+    """Heuristique sur la magnitude. >= 1e11 : ms (>= 1973) ; 1e9..1e10 : s (2001-2286) ; sinon inconnu.
+    NB : un seuil a 1e12 rejetait a tort les ms anterieures a sept. 2001 (ex. oct. 2000)."""
+    if ts >= 1e11: return "ms"
+    if 1e9 <= ts < 1e10: return "s"
     return "inconnu"
 
 def to_dt(ts, unit):
