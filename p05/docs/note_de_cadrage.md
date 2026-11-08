@@ -25,7 +25,7 @@ Précaution scientifique : un terme à fort TF-IDF est un terme **caractéristiq
 | Volume annoncé | ≈ 2,1 M avis, ≈ 94 300 produits (valeurs du portail, avant filtrage) |
 | Usage | Cadre pédagogique / recherche, dans le respect des conditions du diffuseur (portail ci-dessus). Pas de redistribution des données ; `user_id` jamais exposé. |
 
-Le téléchargement est tracé dans un manifeste (`MANIFEST_download.json` : URL, date UTC, taille, SHA-256, test gzip).
+Le téléchargement est tracé dans un manifeste (`MANIFEST_download.json` : URL, taille, SHA-256, intégrité gzip, nombre de lignes).
 
 ## 3. Schéma attendu et audit
 
@@ -35,7 +35,7 @@ Champs utilisés (cdc §6.2) et risques :
 |---|---|---|
 | `parent_asin` | clé produit (= « document » TF-IDF) | ne pas confondre avec `asin` ; rejet si absent |
 | `rating` | MR3 | doit être dans [1,5] |
-| `timestamp` | mois `YYYY-MM` | **millisecondes** (confirmé par l'audit : 2 128 604 / 2 128 605) |
+| `timestamp` | mois `YYYY-MM` | **millisecondes** (confirmé par l'audit : 2 128 605 / 2 128 605) |
 | `title`, `text` | tokens MR1/MR2 | rejet si les deux sont vides |
 | `verified_purchase`, `helpful_vote` | descriptifs facultatifs | non interprétés causalement |
 | `user_id` | uniquement pour la clé technique de dédoublonnage | jamais affiché ni exporté en gold |
@@ -45,27 +45,27 @@ Champs utilisés (cdc §6.2) et risques :
 | Mesure | Valeur |
 |---|---|
 | Lignes lues | 2 128 605 |
-| Avis valides (avant déduplication) | 2 128 604 |
-| Rejets par motif | 1 × `timestamp_unite_inconnue` (0,00005 %) ; 0 JSON invalide, 0 `parent_asin` absent, 0 note hors [1,5], 0 texte+titre vides |
+| Avis valides (avant déduplication) | 2 128 605 |
+| Rejets par motif | Aucun : 0 JSON invalide, 0 `parent_asin` absent, 0 note hors [1,5], 0 timestamp invalide, 0 texte+titre vides |
 | Complétude des champs | 10 champs présents à 100 % : `asin`, `parent_asin`, `user_id`, `title`, `text`, `rating`, `timestamp`, `helpful_vote`, `verified_purchase`, `images` (liste, non utilisée) |
 | Types | `rating` = float ; `timestamp` = int ; `helpful_vote` = int (aucune valeur négative) ; `verified_purchase` = bool |
-| Unité du timestamp | **millisecondes** pour 2 128 604 lignes (1 ligne d'unité non reconnue, voir point 2) |
-| Plage de dates | 2002-11-17 → 2023-09-12 (UTC) |
-| Produits distincts valides (`parent_asin`) | 94 318 (portail : ≈ 94 300) |
-| Doublons (clé candidate `user_id｜parent_asin｜asin｜timestamp｜text`) | 22 657 (≈ 1,06 %) → avis uniques estimés : ≈ 2 105 947 |
+| Unité du timestamp | **millisecondes** pour les 2 128 605 lignes (100 %) |
+| Plage de dates | 2000-10-23 → 2023-09-12 (UTC) |
+| Produits distincts valides (`parent_asin`) | 94 319 (portail : ≈ 94 300) |
+| Doublons (clé candidate `user_id｜parent_asin｜asin｜timestamp｜text`) | 22 657 (≈ 1,06 %) → avis uniques estimés : ≈ 2 105 948 |
 | Distribution des notes | 1★ : 250 453 (11,8 %) · 2★ : 79 664 (3,7 %) · 3★ : 104 047 (4,9 %) · 4★ : 208 216 (9,8 %) · 5★ : 1 486 225 (69,8 %) |
-| `verified_purchase` | vrai : 2 040 064 (95,8 %) · faux : 88 540 (4,2 %) |
+| `verified_purchase` | vrai : 2 040 064 (95,8 %) · faux : 88 541 (4,2 %) |
 | Longueur des textes (caractères) | moyenne 169,5 · médiane 88 · p95 580 · max 30 004 · `text` vide : 2 065 (≈ 0,1 %) |
 
 **Lecture et décisions issues de l'audit**
 
 1. **Timestamp = millisecondes** : la conversion en mois `YYYY-MM` se fait avec `ts / 1000`. Le test T05 doit utiliser des valeurs en ms.
-2. **Une ligne au timestamp d'unité non reconnue** (ni millisecondes ni secondes plausibles) : elle est rejetée par la règle « date non décodable » et tracée dans le journal de rejets.
+2. **Avis anciens :** le plus ancien (23/10/2000) est bien en millisecondes (`972311843000`, soit moins de 10¹²). Le seuil de reconnaissance de l'unité est donc fixé à 10¹¹ et non 10¹², afin de ne pas rejeter à tort les avis antérieurs à septembre 2001. Aucune ligne n'est rejetée par le contrôle de date.
 3. **Doublons ≈ 1 %** : déduplication obligatoire en S2 avec une clé technique stable ; la clé candidate ci-dessus est un point de départ (contrôle des collisions documenté).
 4. **Notes très déséquilibrées** (≈ 70 % de 5★, 3★ minoritaires) : les profils mensuels de MR3 seront dominés par les hautes notes ; toute extension classifieur (§9.2 du cdc) exigera une baseline majoritaire et un traitement du déséquilibre. Ces notes restent des *indicateurs de notation*.
 5. **Textes courts** (médiane 88 caractères, ≈ 0,1 % de `text` vide) : la règle « rejet si texte **et** titre vides » est retenue ; les avis à `text` vide mais titre non vide sont conservés pour la tokenisation ; leur nombre exact sera compté en S2. Les avis très courts rendent le seuil de 20 avis par produit d'autant plus nécessaire.
-6. **Biais de corpus** : 95,8 % d'achats vérifiés ; période 2002–2023 inégalement couverte (couverture mensuelle à tracer).
-7. Les 94 318 produits fixent l'ordre de grandeur de `N` (avant filtrage et dédoublonnage) ; `N` définitif sera calculé sur le corpus nettoyé.
+6. **Biais de corpus** : 95,8 % d'achats vérifiés ; période 2000–2023 inégalement couverte (couverture mensuelle à tracer).
+7. Les 94 319 produits fixent l'ordre de grandeur de `N` (avant filtrage et dédoublonnage) ; `N` définitif sera calculé sur le corpus nettoyé.
 
 Le script d'audit a été validé sur un jeu **jouet inventé** (`data/toy/`, tout est fictif, identifiants `TOY_*`) : 15 lignes → 12 valides, 3 rejets attendus (JSON invalide, `parent_asin` absent, note 7) — conforme au test T01.
 
@@ -93,7 +93,9 @@ Les taux sont ajustables selon les ressources disponibles. Pour chaque niveau, l
 | Avis par produit (moyenne) | ≈ 22,3 | ≈ 22,0 |
 | SHA-256 de l'échantillon | `48bfedf7…c443975` | `4c136ed8…135ca43c` |
 
-Les taux de produits retenus sont proches des cibles (1 % et 10 %) ; la part d'avis diffère légèrement car les produits très évalués sont inégalement répartis entre les échantillons. Le nombre de produits vus (94 319) dépasse de 1 celui de l'audit (94 318), car l'échantillonneur compte aussi le produit de la ligne rejetée pour timestamp non reconnu, que l'audit exclut.
+Les taux de produits retenus sont proches des cibles (1 % et 10 %) ; la part d'avis diffère légèrement car les produits très évalués sont inégalement répartis entre les échantillons.
+
+**Jeu de contrôle L0.** Corpus entièrement fictif de 12 avis sur 3 produits (`TOY_A`, `TOY_B`, `TOY_C`), complété par 3 lignes volontairement invalides, écrit à la main pour vérifier l'exactitude de MR1, MR2 et MR3 par calcul manuel. Il couvre un terme présent dans tous les produits (`delivery`, IDF = 0), des termes partagés ou distinctifs (`quiet`, `broke`), des négations et plusieurs avis par couple produit–mois. Les 3 lignes invalides (JSON cassé, `parent_asin` absent, note égale à 7) valident le test T01 : l'audit les rejette avec le motif attendu. Description complète et résultats attendus : `docs/jeu_de_controle_L0.md`.
 
 ## 5. Choix méthodologiques figés dès maintenant
 
@@ -138,6 +140,6 @@ Installation de HDFS/YARN, dépôt de la zone bronze, préparateur streaming ave
 ## 10. Livrables de la Semaine 1
 
 - Scripts : téléchargement avec manifeste, audit de schéma, échantillonnage déterministe par produit.
-- Jeu de contrôle fictif (L0) identifié comme test, avec lignes invalides (test T01).
+- Jeu de contrôle fictif (L0) identifié comme test, avec lignes invalides (test T01), et sa description (`jeu_de_controle_L0.md`).
 - Audit complet du fichier réel (2 128 605 lignes) : rapport `audit_schema.json`.
 - Présente note de cadrage.
